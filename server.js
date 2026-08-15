@@ -10,24 +10,22 @@ const db       = require('./db');
 const analytics  = require('./analytics');
 const tgSync   = require('./tg-sync');
 
-// multer — for /upload-db file upload
 const upload = multer({ dest: '/tmp/uploads/' });
 
 const app = express();
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view', path.join(__dirname, 'view'));
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(analytics.middleware);
 
-// Serve shared nav.js from views folder
 app.get('/nav.js', (req, res) => {
   res.setHeader('Content-Type','application/javascript');
-  res.sendFile(path.join(__dirname,'views','nav.js'));
+  res.sendFile(path.join(__dirname,'view','nav.js'));
 });
 
 const OWNER   = "@sahilxalone";
@@ -89,28 +87,28 @@ function cleanData(obj) {
 }
 
 const APIs = [
-  { name: "tg",           url: "https://rootx-osint.in/?type=tg_num&key=sahil_X&query={query}",                method:"GET", description:"Telegram user info lookup"              },
-  { name: "leak",         url: "https://raxxosint.onrender.com/leakosint?key=Sahilzz-17$&quiry={query}",          method:"GET", description:"Leak OSINT query lookup"                 },
-  { name: "num2",          url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",              method:"GET", description:"Mobile number intelligence"               },
-  { name: "num",    url: "https://leakapi.dpdns.org/search?q={number}",                                  method:"GET", description:"Database number search"                  },
-  { name: "num-india",    url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}",       method:"GET", description:"India phone number lookup"               },
-  { name: "num-pak",      url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",        method:"GET", description:"Pakistan phone number lookup"            },
-  { name: "chain",        url: "https://leakapi.dpdns.org/chain?q={number}",                                   method:"GET", description:"Hi-tech number chain intelligence"       },
-  { name: "bom",          url: "https://leakapi.dpdns.org/bomb?num={number}",                                  method:"GET", description:"💣 SMS/Call bomber"                      },
-  { name: "adhar",        url: "https://osint.invalidayushh.workers.dev/adhar?key=Sahil&q={adhar}",            method:"GET", description:"Aadhaar identification lookup"           },
-  { name: "family",       url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",          method:"GET", description:"Family tree demographic lookup"          },
-  { name: "email",        url: "https://osint.invalidayushh.workers.dev/email?key=Rack&q={email}",             method:"GET", description:"Email breach record lookup"              },
-  { name: "veh-info",     url: "https://leakapi.dpdns.org/vehicle-info?registration_number={vehicle}",         method:"GET", description:"Vehicle registration details"            },
-  { name: "veh",          url: "https://leakapi.dpdns.org/api/vehicle?vehicle={vehicle}",                      method:"GET", description:"Detailed vehicle intelligence"           },
-  { name: "rc",           url: "https://leakapi.dpdns.org/rc?registration_number={vehicle}",                   method:"GET", description:"RC registration lookup"                  },
-  { name: "insta",        url: "https://osint.invalidayushh.workers.dev/insta?key=Rack&q={username}",          method:"GET", description:"Instagram account intelligence"          },
-  { name: "git",          url: "https://ft-osint-api.duckdns.org/api/git?key=sahil-new&username={username}",   method:"GET", description:"GitHub profile intelligence"             },
-  { name: "bgmi",         url: "https://ft-osint-api.duckdns.org/api/bgmi?key=sahil-new&uid={uid}",            method:"GET", description:"BGMI player ID lookup"                   },
-  { name: "ff",           url: "https://ft-osint-api.duckdns.org/api/ff?key=sahil-new&uid={uid}",              method:"GET", description:"Free Fire player ID lookup"              },
-  { name: "ifsc",         url: "https://ft-osint-api.duckdns.org/api/ifsc?key=sahil-new&ifsc={ifsc}",          method:"GET", description:"Bank IFSC code lookup"                   },
-  { name: "pan",          url: "https://ft-osint-api.duckdns.org/api/pan?key=sahil-new&pan={pan}",             method:"GET", description:"PAN card intelligence lookup"            },
-  { name: "ip",           url: "https://ft-osint-api.duckdns.org/api/ip?key=sahil-new&ip={ip}",                method:"GET", description:"IP geolocation intelligence"             },
-  { name: "pin",          url: "https://ft-osint-api.duckdns.org/api/pincode?key=sahil-new&pin={pincode}",     method:"GET", description:"Postal pincode lookup"                   },
+  { name: "tg",       url: "https://rootx-osint.in/?type=tg_num&key=sahil_X&query={query}",           method:"GET", description:"Telegram user info lookup"    },
+  { name: "leak",     url: "https://raxxosint.onrender.com/leakosint?key=Sahilzz-17$&quiry={query}",  method:"GET", description:"Leak OSINT query lookup"       },
+  { name: "num2",     url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",         method:"GET", description:"Mobile number intelligence"    },
+  { name: "num",      url: "https://leakapi.dpdns.org/search?q={number}",                             method:"GET", description:"Database number search"        },
+  { name: "num-india",url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}", method:"GET", description:"India phone number lookup"     },
+  { name: "num-pak",  url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",  method:"GET", description:"Pakistan phone number lookup"  },
+  { name: "chain",    url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"          },
+  { name: "bom",      url: "https://leakapi.dpdns.org/bomb?num={number}",                             method:"GET", description:"💣 SMS/Call bomber"            },
+  { name: "adhar",    url: "https://osint.invalidayushh.workers.dev/adhar?key=Sahil&q={adhar}",       method:"GET", description:"Aadhaar identification lookup" },
+  { name: "family",   url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",    method:"GET", description:"Family tree lookup"            },
+  { name: "email",    url: "https://osint.invalidayushh.workers.dev/email?key=Rack&q={email}",        method:"GET", description:"Email breach record lookup"    },
+  { name: "veh-info", url: "https://leakapi.dpdns.org/vehicle-info?registration_number={vehicle}",    method:"GET", description:"Vehicle registration details"  },
+  { name: "veh",      url: "https://leakapi.dpdns.org/api/vehicle?vehicle={vehicle}",                 method:"GET", description:"Detailed vehicle intelligence" },
+  { name: "rc",       url: "https://leakapi.dpdns.org/rc?registration_number={vehicle}",              method:"GET", description:"RC registration lookup"        },
+  { name: "insta",    url: "https://osint.invalidayushh.workers.dev/insta?key=Rack&q={username}",     method:"GET", description:"Instagram account intelligence"},
+  { name: "git",      url: "https://ft-osint-api.duckdns.org/api/git?key=sahil-new&username={username}", method:"GET", description:"GitHub profile intelligence"},
+  { name: "bgmi",     url: "https://ft-osint-api.duckdns.org/api/bgmi?key=sahil-new&uid={uid}",      method:"GET", description:"BGMI player ID lookup"         },
+  { name: "ff",       url: "https://ft-osint-api.duckdns.org/api/ff?key=sahil-new&uid={uid}",        method:"GET", description:"Free Fire player ID lookup"    },
+  { name: "ifsc",     url: "https://ft-osint-api.duckdns.org/api/ifsc?key=sahil-new&ifsc={ifsc}",    method:"GET", description:"Bank IFSC code lookup"         },
+  { name: "pan",      url: "https://ft-osint-api.duckdns.org/api/pan?key=sahil-new&pan={pan}",       method:"GET", description:"PAN card intelligence lookup"  },
+  { name: "ip",       url: "https://ft-osint-api.duckdns.org/api/ip?key=sahil-new&ip={ip}",          method:"GET", description:"IP geolocation intelligence"   },
+  { name: "pin",      url: "https://ft-osint-api.duckdns.org/api/pincode?key=sahil-new&pin={pincode}",method:"GET", description:"Postal pincode lookup"        },
 ];
 
 function exampleValFor(param) {
@@ -136,17 +134,13 @@ APIs.forEach(api => {
   nameSet.add(autoName);
   const matches = api.url.match(/\{([^}]+)\}/g);
   const required = matches ? matches.map(m => m.replace(/[{}]/g, '')) : [];
-
   const exampleQuery = required.length > 0
     ? required.map(p => `${p}=${exampleValFor(p)}`).join('&')
     : 'query=test';
-
   const exampleParam = required[0] || 'query';
   const exampleVal   = exampleValFor(exampleParam);
-
   const paramExamples = {};
   required.forEach(p => { paramExamples[p] = exampleValFor(p); });
-
   registeredAPIs.push({
     name: autoName,
     url: api.url,
@@ -154,32 +148,19 @@ APIs.forEach(api => {
     method: api.method || 'GET',
     description: api.description || 'API endpoint',
     requiredParams: required,
-    exampleParam,
-    exampleVal,
-    exampleQuery,
-    paramExamples
+    exampleParam, exampleVal, exampleQuery, paramExamples
   });
 });
 
-// SQL LOGGING FUNCTION
 function logQuery(endpointName, inputParam, inputValue, statusCode, responseData, errorMsg, ipAddr, execTime) {
-  db.run(`
-    INSERT INTO queries (endpoint, input_param, input_value, response_status, response_data, error_msg, ip_address, execution_time)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-  `, [endpointName, inputParam, inputValue, statusCode, JSON.stringify(responseData), errorMsg, ipAddr, execTime], function(err) {
-    if (err) console.error('DB log failed:', err);
-  });
-
-  db.run(`
-    INSERT INTO analytics (endpoint, total_queries, successful, avg_time)
-    VALUES (?, 1, ?, ?)
-    ON CONFLICT(endpoint) DO UPDATE SET
-      total_queries = total_queries + 1,
-      successful = successful + ?,
-      avg_time = (avg_time * (total_queries - 1) + ?) / total_queries
-  `, [endpointName, statusCode < 400 ? 1 : 0, execTime, statusCode < 400 ? 1 : 0, execTime], (err) => {
-    if (err) console.error('Analytics update failed:', err);
-  });
+  db.run(`INSERT INTO queries (endpoint, input_param, input_value, response_status, response_data, error_msg, ip_address, execution_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [endpointName, inputParam, inputValue, statusCode, JSON.stringify(responseData), errorMsg, ipAddr, execTime],
+    function(err) { if (err) console.error('DB log failed:', err); }
+  );
+  db.run(`INSERT INTO analytics (endpoint, total_queries, successful, avg_time) VALUES (?, 1, ?, ?) ON CONFLICT(endpoint) DO UPDATE SET total_queries = total_queries + 1, successful = successful + ?, avg_time = (avg_time * (total_queries - 1) + ?) / total_queries`,
+    [endpointName, statusCode < 400 ? 1 : 0, execTime, statusCode < 400 ? 1 : 0, execTime],
+    (err) => { if (err) console.error('Analytics update failed:', err); }
+  );
 }
 
 app.get('/health', (req, res) => {
@@ -191,11 +172,11 @@ app.get('/analytics/data', (req, res) => {
 });
 
 app.get('/analytics', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'analytics.html'));
+  res.sendFile(path.join(__dirname, 'view', 'analytics.html'));
 });
 
 app.get('/db-manager', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'db-manager.html'));
+  res.sendFile(path.join(__dirname, 'view', 'db-manager.html'));
 });
 
 app.get('/meta', (req, res) => {
@@ -207,7 +188,6 @@ app.get('/db/stats', (req, res) => {
   const fsSync = require('fs');
   let dbSizeBytes = 0;
   try { dbSizeBytes = fsSync.statSync(DB_PATH).size; } catch(e) {}
-
   db.all('SELECT COUNT(*) as total FROM queries', [], (err, r1) => {
     const totalQueries = err ? 0 : (r1[0].total || 0);
     db.all('SELECT endpoint, COUNT(*) as count, SUM(CASE WHEN response_status < 400 THEN 1 ELSE 0 END) as success, SUM(CASE WHEN response_status >= 400 THEN 1 ELSE 0 END) as errors, ROUND(AVG(execution_time),1) as avg_time, MIN(created_at) as first_seen, MAX(created_at) as last_seen FROM queries GROUP BY endpoint ORDER BY count DESC', [], (err2, endpoints) => {
@@ -264,12 +244,9 @@ app.get('/api-data', (req, res) => {
   const host     = req.get('host');
   const baseUrl  = `${protocol}://${host}`;
   const formattedApis = registeredAPIs.map(api => ({
-    name: api.name,
-    method: api.method,
-    description: api.description,
+    name: api.name, method: api.method, description: api.description,
     publicUrl: `${baseUrl}/api/${api.name}`,
-    requiredParams: api.requiredParams,
-    paramExamples: api.paramExamples,
+    requiredParams: api.requiredParams, paramExamples: api.paramExamples,
     exampleQuery: api.exampleQuery,
     example: `${baseUrl}/api/${api.name}?${api.exampleQuery}`,
     upstreamUrl: api.upstreamUrl
@@ -278,28 +255,18 @@ app.get('/api-data', (req, res) => {
 });
 
 app.get('/api', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+  res.sendFile(path.join(__dirname, 'view', 'index.html'));
 });
 
-// SQL ENDPOINTS
 app.get('/sql/stats', (req, res) => {
-  db.all(`
-    SELECT endpoint, total_queries, successful, ROUND(avg_time, 2) as avg_time
-    FROM analytics
-    ORDER BY total_queries DESC
-  `, (err, rows) => {
+  db.all(`SELECT endpoint, total_queries, successful, ROUND(avg_time, 2) as avg_time FROM analytics ORDER BY total_queries DESC`, (err, rows) => {
     if (err) return res.status(500).json({ success: false, error: err.message });
     res.json({ success: true, data: rows });
   });
 });
 
 app.get('/sql/queries/:endpoint', (req, res) => {
-  db.all(`
-    SELECT * FROM queries
-    WHERE endpoint = ?
-    ORDER BY created_at DESC
-    LIMIT 100
-  `, [req.params.endpoint], (err, rows) => {
+  db.all(`SELECT * FROM queries WHERE endpoint = ? ORDER BY created_at DESC LIMIT 100`, [req.params.endpoint], (err, rows) => {
     if (err) return res.status(500).json({ success: false, error: err.message });
     res.json({ success: true, count: rows.length, data: rows });
   });
@@ -308,24 +275,18 @@ app.get('/sql/queries/:endpoint', (req, res) => {
 app.get('/sql/search', (req, res) => {
   const q = req.query.q;
   if (!q) return res.status(400).json({ success: false, error: "Missing query parameter" });
-  
-  db.all(`
-    SELECT * FROM queries
-    WHERE input_value LIKE ? OR input_param LIKE ?
-    ORDER BY created_at DESC
-    LIMIT 50
-  `, [`%${q}%`, `%${q}%`], (err, rows) => {
+  db.all(`SELECT * FROM queries WHERE input_value LIKE ? OR input_param LIKE ? ORDER BY created_at DESC LIMIT 50`,
+    [`%${q}%`, `%${q}%`], (err, rows) => {
     if (err) return res.status(500).json({ success: false, error: err.message });
     res.json({ success: true, count: rows.length, data: rows });
   });
 });
 
-// MAIN API GATEWAY
 const PERMANENT_ROUTES = [
-  '/api/tg', '/api/leak', '/api/num', '/api/numsearch', '/api/num-india', '/api/num-pak',
-  '/api/chain', '/api/bom', '/api/adhar', '/api/family', '/api/email', '/api/veh-info',
-  '/api/veh', '/api/rc', '/api/insta', '/api/git', '/api/bgmi', '/api/ff', '/api/ifsc',
-  '/api/pan', '/api/ip', '/api/pin',
+  '/api/tg','/api/leak','/api/num','/api/numsearch','/api/num-india','/api/num-pak',
+  '/api/chain','/api/bom','/api/adhar','/api/family','/api/email','/api/veh-info',
+  '/api/veh','/api/rc','/api/insta','/api/git','/api/bgmi','/api/ff','/api/ifsc',
+  '/api/pan','/api/ip','/api/pin',
 ];
 
 PERMANENT_ROUTES.forEach(route => {
@@ -342,179 +303,99 @@ app.all('/api/:endpoint', async (req, res) => {
     const startTime = Date.now();
     const endpointName = req.params.endpoint;
     const apiConfig    = registeredAPIs.find(a => a.name === endpointName);
-
     if (!apiConfig) {
-      return res.status(404).json({
-        success: false, error: "Endpoint not found",
-        message: `The endpoint '/api/${endpointName}' does not exist. Visit /api to see available endpoints.`
-      });
+      return res.status(404).json({ success: false, error: "Endpoint not found",
+        message: `The endpoint '/api/${endpointName}' does not exist. Visit /api to see available endpoints.` });
     }
-
     const inputParams = { ...req.query, ...req.body };
-    let targetValue = null;
-    let usedParam = null;
-
+    let targetValue = null, usedParam = null;
     for (const param of apiConfig.requiredParams) {
       if (inputParams[param] !== undefined && inputParams[param] !== '') {
-        targetValue = inputParams[param];
-        usedParam = param;
-        break;
+        targetValue = inputParams[param]; usedParam = param; break;
       }
     }
-    
     if (!targetValue) {
       const fallbackKeys = ['query','q','number','num','adhar','aadhar','email','vehicle',
         'registration_number','username','user','uid','id','ifsc','pan','ip','pincode','pin','term','quiry'];
       for (const key of fallbackKeys) {
         if (inputParams[key] !== undefined && inputParams[key] !== '') {
-          targetValue = inputParams[key];
-          usedParam = key;
-          break;
+          targetValue = inputParams[key]; usedParam = key; break;
         }
       }
     }
-
     if (!targetValue) {
-      return res.status(400).json({
-        success: false, error: "Missing required parameter",
+      return res.status(400).json({ success: false, error: "Missing required parameter",
         required_parameters: apiConfig.requiredParams,
-        message: `Please supply a valid parameter (e.g., ?${apiConfig.exampleParam}=VALUE)`
-      });
+        message: `Please supply a valid parameter (e.g., ?${apiConfig.exampleParam}=VALUE)` });
     }
-
     let finalUpstreamUrl = apiConfig.url;
     const encodedVal = encodeURIComponent(targetValue);
     apiConfig.requiredParams.forEach(param => {
       finalUpstreamUrl = finalUpstreamUrl.replace(new RegExp(`\\{${param}\\}`, 'g'), encodedVal);
     });
-
-    console.log(`[${new Date().toISOString()}] → ${finalUpstreamUrl}`);
-
     const axiosConfig = {
-      method: apiConfig.method,
-      url: finalUpstreamUrl,
-      timeout: 30000,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Accept': 'application/json, text/plain, */*'
-      },
+      method: apiConfig.method, url: finalUpstreamUrl, timeout: 30000,
+      headers: { 'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json, text/plain, */*' },
       validateStatus: status => status < 600
     };
-
-    if (['POST','PUT','PATCH'].includes(axiosConfig.method.toUpperCase())) {
-      axiosConfig.data = req.body;
-    }
-
+    if (['POST','PUT','PATCH'].includes(axiosConfig.method.toUpperCase())) axiosConfig.data = req.body;
     const response = await axios(axiosConfig);
     const execTime = Date.now() - startTime;
-
     if (!response.data) {
       logQuery(endpointName, usedParam, targetValue, 500, {}, "No data returned", req.ip, execTime);
-      return res.status(500).json({ success: false, error: "API returned no data", status: response.status, owner: OWNER, channel: CHANNEL });
+      return res.status(500).json({ success: false, error: "API returned no data", owner: OWNER, channel: CHANNEL });
     }
-
     if (typeof response.data === 'string' && response.data.includes('<!DOCTYPE html>')) {
-      logQuery(endpointName, usedParam, targetValue, 500, {}, "HTML error page returned", req.ip, execTime);
+      logQuery(endpointName, usedParam, targetValue, 500, {}, "HTML error page", req.ip, execTime);
       return res.status(500).json({ success: false, error: "API returned HTML error page", owner: OWNER, channel: CHANNEL });
     }
-
     let cleaned = cleanData(response.data);
-
     if (!cleaned || (typeof cleaned === 'object' && Object.keys(cleaned).length === 0)) {
       logQuery(endpointName, usedParam, targetValue, 404, cleaned, "Empty response", req.ip, execTime);
       return res.status(404).json({ success: false, error: "No data found", owner: OWNER, channel: CHANNEL });
     }
-
     if (cleaned && typeof cleaned === 'object' && !Array.isArray(cleaned)) {
-      cleaned.owner = OWNER;
-      cleaned.channel = CHANNEL;
-      cleaned.timestamp = new Date().toISOString();
+      cleaned.owner = OWNER; cleaned.channel = CHANNEL; cleaned.timestamp = new Date().toISOString();
     } else {
       cleaned = { data: cleaned, owner: OWNER, channel: CHANNEL, timestamp: new Date().toISOString() };
     }
-
     logQuery(endpointName, usedParam, targetValue, response.status, cleaned, null, req.ip, execTime);
-
     return res.status(response.status).json(cleaned);
-
   } catch (error) {
     const execTime = Date.now() - startTime;
-    console.error(`[${new Date().toISOString()}] Error:`, error.message);
-    
-    let errorMessage = error.message || "An unexpected error occurred";
+    let errorMessage = error.message || "Unexpected error";
     let errorDetails = {};
-
-    if (error.response) {
-      errorDetails.status = error.response.status;
-      errorMessage = `API returned status ${error.response.status}`;
-    } else if (error.request) {
-      errorMessage = "No response from API server (timeout or network error)";
-    }
-
+    if (error.response) { errorDetails.status = error.response.status; errorMessage = `API returned status ${error.response.status}`; }
+    else if (error.request) { errorMessage = "No response from API server (timeout)"; }
     logQuery(req.params.endpoint, null, null, 500, {}, errorMessage, req.ip, execTime);
-
-    return res.status(500).json({
-      success: false, error: "Gateway execution error",
-      message: errorMessage, details: errorDetails,
-      owner: OWNER, channel: CHANNEL
-    });
+    return res.status(500).json({ success: false, error: "Gateway execution error", message: errorMessage, details: errorDetails, owner: OWNER, channel: CHANNEL });
   }
 });
 
-// ─────────────────────────────────────────────
-//  TELEGRAM DB SYNC ROUTES
-// ─────────────────────────────────────────────
-
-// GET /send-db  →  Manually trigger DB send to Telegram
-// Protect with a secret key via ?key=YOUR_SECRET
 app.get('/send-db', async (req, res) => {
   const secret = process.env.ADMIN_KEY || 'sahil_admin';
-  if (req.query.key !== secret) {
-    return res.status(401).json({ success: false, error: 'Unauthorized' });
-  }
+  if (req.query.key !== secret) return res.status(401).json({ success: false, error: 'Unauthorized' });
   await tgSync.sendDB('manual');
   res.json({ success: true, message: 'DB sent to Telegram' });
 });
 
-// POST /upload-db  →  Upload a .db file to replace the current DB
-// Usage: send multipart form with field "db" containing the .db file
-// Protect with ?key=YOUR_SECRET
 app.post('/upload-db', upload.single('db'), async (req, res) => {
   const secret = process.env.ADMIN_KEY || 'sahil_admin';
   if (req.query.key !== secret) {
-    // cleanup temp file
     if (req.file) fs.unlinkSync(req.file.path);
     return res.status(401).json({ success: false, error: 'Unauthorized' });
   }
-
-  if (!req.file) {
-    return res.status(400).json({ success: false, error: 'No file uploaded. Use field name "db".' });
-  }
-
+  if (!req.file) return res.status(400).json({ success: false, error: 'No file. Use field name "db".' });
   const DB_PATH = process.env.DB_PATH || '/tmp/osint.db';
-
   try {
-    // Close current DB connections gracefully then replace file
     fs.copyFileSync(req.file.path, DB_PATH);
     fs.unlinkSync(req.file.path);
-
-    await tgSync.sendMessage(
-      `✅ <b>DB Uploaded & Replaced</b>\n` +
-      `📁 Path: <code>${DB_PATH}</code>\n` +
-      `🕒 <code>${new Date().toISOString()}</code>`
-    );
-
-    res.json({
-      success: true,
-      message: `DB replaced at ${DB_PATH}`,
-      tip: 'Server will use new DB on next query. Restart for full effect.'
-    });
+    await tgSync.sendMessage(`✅ <b>DB Uploaded</b>\n📁 <code>${DB_PATH}</code>\n🕒 <code>${new Date().toISOString()}</code>`);
+    res.json({ success: true, message: `DB replaced at ${DB_PATH}` });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
 });
-
-// ─────────────────────────────────────────────
 
 const PORT = process.env.PORT || 3000;
 if (require.main === module) {
@@ -522,12 +403,9 @@ if (require.main === module) {
     console.log(`API Gateway running on port ${PORT}`);
     console.log(`Owner: ${OWNER} | Channel: ${CHANNEL}`);
     console.log(`Endpoints: ${registeredAPIs.length}`);
-
-    // 🔔 Boot: send DB to Telegram + start interval
     await tgSync.onBoot();
     tgSync.startInterval();
   });
 }
-
 
 module.exports = app;
