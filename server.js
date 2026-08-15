@@ -41,13 +41,13 @@ const removeFields = [
   '@invalidayushh', '@ftgamerv2', '@ftgamer2', 'InvalidAyush',
   '@InvalidAyush', 'invalidayush', '@invalidayush', 'DM TO BUY ACCESS',
   'xtradeep', 'Kon_Hu_Mai', 'support', '@raxusss', 'raxusss', 'Raxusss',
-  'Support', 'help', 'Help'
+  'Support', 'help', 'Help','@CYBERXANMOL', '@AMMOL_ZZ'  
 ];
 
 const badSubstrings = [
   '@raxusss', 'raxusss', 'Raxusss',
   'InvalidAyush', '@InvalidAyush', 'invalidayush', '@invalidayush',
-  'ftgamerv2', 'ftgamer2', '@ftgamerv2', '@ftgamer2', '@simpleguy444'
+  'ftgamerv2', 'ftgamer2', '@ftgamerv2', '@ftgamer2', '@simpleguy444','@CYBERXANMOL', '@AMMOL_ZZ'  
 ];
 
 const removeFieldsLower = new Set(removeFields.map(f => f.toLowerCase()));
@@ -109,6 +109,7 @@ const APIs = [
   { name: "pan",      url: "https://ft-osint-api.duckdns.org/api/pan?key=sahil-new&pan={pan}",       method:"GET", description:"PAN card intelligence lookup"  },
   { name: "ip",       url: "https://ft-osint-api.duckdns.org/api/ip?key=sahil-new&ip={ip}",          method:"GET", description:"IP geolocation intelligence"   },
   { name: "pin",      url: "https://ft-osint-api.duckdns.org/api/pincode?key=sahil-new&pin={pincode}",method:"GET", description:"Postal pincode lookup"        },
+  { name: "snap", url: "https://b-c-a-i.vercel.app/profile/{username}", method:"GET", description:"Snapchat profile intelligence" },
 ];
 
 function exampleValFor(param) {
@@ -286,7 +287,7 @@ const PERMANENT_ROUTES = [
   '/api/tg','/api/leak','/api/num','/api/numsearch','/api/num-india','/api/num-pak',
   '/api/chain','/api/bom','/api/adhar','/api/family','/api/email','/api/veh-info',
   '/api/veh','/api/rc','/api/insta','/api/git','/api/bgmi','/api/ff','/api/ifsc',
-  '/api/pan','/api/ip','/api/pin',
+  '/api/pan','/api/ip','/api/pin','/api/snap',
 ];
 
 PERMANENT_ROUTES.forEach(route => {
