@@ -41,13 +41,13 @@ const removeFields = [
   '@invalidayushh', '@ftgamerv2', '@ftgamer2', 'InvalidAyush',
   '@InvalidAyush', 'invalidayush', '@invalidayush', 'DM TO BUY ACCESS',
   'xtradeep', 'Kon_Hu_Mai', 'support', '@raxusss', 'raxusss', 'Raxusss',
-  'Support', 'help', 'Help','@CYBERXANMOL', '@AMMOL_ZZ'  
+  'Support', 'help', 'Help','@CYBERXANMOL', '@AMMOL_ZZ'
 ];
 
 const badSubstrings = [
   '@raxusss', 'raxusss', 'Raxusss',
   'InvalidAyush', '@InvalidAyush', 'invalidayush', '@invalidayush',
-  'ftgamerv2', 'ftgamer2', '@ftgamerv2', '@ftgamer2', '@simpleguy444','@CYBERXANMOL', '@AMMOL_ZZ'  
+  'ftgamerv2', 'ftgamer2', '@ftgamerv2', '@ftgamer2', '@simpleguy444','@CYBERXANMOL', '@AMMOL_ZZ'
 ];
 
 const removeFieldsLower = new Set(removeFields.map(f => f.toLowerCase()));
@@ -88,12 +88,12 @@ function cleanData(obj) {
 
 const APIs = [
   { name: "tg",       url: "https://rootx-osint.in/?type=tg_num&key=sahil_X&query={query}",           method:"GET", description:"Telegram user info lookup"    },
-  { name: "leakpro",     url: "https://raxxosint.onrender.com/leakosint?key=Sahilzz-17$&quiry={query}",  method:"GET", description:"Leak OSINT query lookup"       },
+  { name: "leakpro",  url: "https://raxxosint.onrender.com/leakosint?key=Sahilzz-17$&quiry={query}",  method:"GET", description:"Leak OSINT query lookup"       },
   { name: "num2",     url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",         method:"GET", description:"Mobile number intelligence"    },
   { name: "num",      url: "https://leakapi.dpdns.org/search?q={number}",                             method:"GET", description:"Database number search"        },
   { name: "num-india",url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}", method:"GET", description:"India phone number lookup"     },
   { name: "num-pak",  url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",  method:"GET", description:"Pakistan phone number lookup"  },
-  { name: "leak",    url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"          },
+  { name: "leak",     url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"          },
   { name: "bom",      url: "https://leakapi.dpdns.org/bomb?num={number}",                             method:"GET", description:"💣 SMS/Call bomber"            },
   { name: "adhar",    url: "https://osint.invalidayushh.workers.dev/adhar?key=Rack&q={adhar}",       method:"GET", description:"Aadhaar identification lookup" },
   { name: "family",   url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",    method:"GET", description:"Family tree lookup"            },
@@ -109,7 +109,7 @@ const APIs = [
   { name: "pan",      url: "https://ft-osint-api.duckdns.org/api/pan?key=sahil-new&pan={pan}",       method:"GET", description:"PAN card intelligence lookup"  },
   { name: "ip",       url: "https://ft-osint-api.duckdns.org/api/ip?key=sahil-new&ip={ip}",          method:"GET", description:"IP geolocation intelligence"   },
   { name: "pin",      url: "https://ft-osint-api.duckdns.org/api/pincode?key=sahil-new&pin={pincode}",method:"GET", description:"Postal pincode lookup"        },
-  { name: "snap", url: "https://b-c-a-i.vercel.app/profile/{username}", method:"GET", description:"Snapchat profile intelligence" },
+  { name: "snap",     url: "https://b-c-a-i.vercel.app/profile/{username}",                           method:"GET", description:"Snapchat profile intelligence" },
 ];
 
 function exampleValFor(param) {
@@ -238,8 +238,36 @@ app.delete('/db/clear', (req, res) => {
   }
 });
 
-app.get('/', (req, res) => res.redirect('/api'));
+// --- ROOT: video page ---
+app.get('/', (req, res) => {
+  res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>.</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{width:100%;height:100%;overflow:hidden;background:#000;}
+    video{
+      position:fixed;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      min-width:100%;min-height:100%;
+      width:auto;height:auto;
+      object-fit:cover;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline>
+    <source src="https://files.catbox.moe/2jv4js.mp4" type="video/mp4"/>
+  </video>
+</body>
+</html>`);
+});
 
+// --- API DATA endpoint ---
 app.get('/api-data', (req, res) => {
   const protocol = req.headers['x-forwarded-proto'] || req.protocol;
   const host     = req.get('host');
@@ -255,7 +283,12 @@ app.get('/api-data', (req, res) => {
   res.json({ apis: formattedApis, baseUrl, owner: OWNER, channel: CHANNEL });
 });
 
-app.get('/api', (req, res) => {
+// --- DASHBOARD routes ---
+app.get('/sahil', (req, res) => {
+  res.sendFile(path.join(__dirname, 'view', 'index.html'));
+});
+
+app.get('/nazriya', (req, res) => {
   res.sendFile(path.join(__dirname, 'view', 'index.html'));
 });
 
@@ -306,7 +339,7 @@ app.all('/api/:endpoint', async (req, res) => {
     const apiConfig    = registeredAPIs.find(a => a.name === endpointName);
     if (!apiConfig) {
       return res.status(404).json({ success: false, error: "Endpoint not found",
-        message: `The endpoint '/api/${endpointName}' does not exist. Visit /api to see available endpoints.` });
+        message: `The endpoint '/api/${endpointName}' does not exist. Visit /sahil to see available endpoints.` });
     }
     const inputParams = { ...req.query, ...req.body };
     let targetValue = null, usedParam = null;
