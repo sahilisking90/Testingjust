@@ -88,12 +88,12 @@ function cleanData(obj) {
 
 const APIs = [
   { name: "tg",       url: "https://rootx-osint.in/?type=tg_num&key=sahil_X&query={query}",           method:"GET", description:"Telegram user info lookup"    },
-  { name: "leak",     url: "https://raxxosint.onrender.com/leakosint?key=Sahilzz-17$&quiry={query}",  method:"GET", description:"Leak OSINT query lookup"       },
+  { name: "leakpro",     url: "https://raxxosint.onrender.com/leakosint?key=Sahilzz-17$&quiry={query}",  method:"GET", description:"Leak OSINT query lookup"       },
   { name: "num2",     url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",         method:"GET", description:"Mobile number intelligence"    },
   { name: "num",      url: "https://leakapi.dpdns.org/search?q={number}",                             method:"GET", description:"Database number search"        },
   { name: "num-india",url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}", method:"GET", description:"India phone number lookup"     },
   { name: "num-pak",  url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",  method:"GET", description:"Pakistan phone number lookup"  },
-  { name: "chain",    url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"          },
+  { name: "leak",    url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"          },
   { name: "bom",      url: "https://leakapi.dpdns.org/bomb?num={number}",                             method:"GET", description:"💣 SMS/Call bomber"            },
   { name: "adhar",    url: "https://osint.invalidayushh.workers.dev/adhar?key=Rack&q={adhar}",       method:"GET", description:"Aadhaar identification lookup" },
   { name: "family",   url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",    method:"GET", description:"Family tree lookup"            },
@@ -284,8 +284,8 @@ app.get('/sql/search', (req, res) => {
 });
 
 const PERMANENT_ROUTES = [
-  '/api/tg','/api/leak','/api/num','/api/numsearch','/api/num-india','/api/num-pak',
-  '/api/chain','/api/bom','/api/adhar','/api/family','/api/email','/api/veh-info',
+  '/api/tg','/api/leakpro','/api/num','/api/numsearch','/api/num-india','/api/num-pak',
+  '/api/leak','/api/bom','/api/adhar','/api/family','/api/email','/api/veh-info',
   '/api/veh','/api/rc','/api/insta','/api/git','/api/bgmi','/api/ff','/api/ifsc',
   '/api/pan','/api/ip','/api/pin','/api/snap',
 ];
