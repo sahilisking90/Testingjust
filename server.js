@@ -95,7 +95,7 @@ const APIs = [
   { name: "num-pak",  url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",  method:"GET", description:"Pakistan phone number lookup"  },
   { name: "chain",    url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"          },
   { name: "bom",      url: "https://leakapi.dpdns.org/bomb?num={number}",                             method:"GET", description:"💣 SMS/Call bomber"            },
-  { name: "adhar",    url: "https://osint.invalidayushh.workers.dev/adhar?key=Sahil&q={adhar}",       method:"GET", description:"Aadhaar identification lookup" },
+  { name: "adhar",    url: "https://osint.invalidayushh.workers.dev/adhar?key=Rack&q={adhar}",       method:"GET", description:"Aadhaar identification lookup" },
   { name: "family",   url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",    method:"GET", description:"Family tree lookup"            },
   { name: "email",    url: "https://osint.invalidayushh.workers.dev/email?key=Rack&q={email}",        method:"GET", description:"Email breach record lookup"    },
   { name: "veh-info", url: "https://leakapi.dpdns.org/vehicle-info?registration_number={vehicle}",    method:"GET", description:"Vehicle registration details"  },
