@@ -88,7 +88,7 @@ function cleanData(obj) {
 
 const APIs = [
   { name: "tg",       url: "https://rootx-osint.in/?type=tg_num&key=sahil_X&query={query}",           method:"GET", description:"Telegram user info lookup"    },
-  { name: "leakpro",  url: "https://raxxosint.onrender.com/leakosint?key=Sahilzz-17$&quiry={query}",  method:"GET", description:"Leak OSINT query lookup"       },
+  { name: "leakpro",  url: "https://raxxosint.onrender.com/leakosint?key=Sahil-00%&quiry={query}",  method:"GET", description:"Leak OSINT query lookup"       },
   { name: "num2",     url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",         method:"GET", description:"Mobile number intelligence"    },
   { name: "num",      url: "https://leakapi.dpdns.org/search?q={number}",                             method:"GET", description:"Database number search"        },
   { name: "num-india",url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}", method:"GET", description:"India phone number lookup"     },
