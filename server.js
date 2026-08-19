@@ -180,7 +180,7 @@ app.get('/db-manager', (req, res) => {
 });
 
 app.get('/meta', (req, res) => {
-  res.json({ owner: OWNER, channel: CHANNEL, totalEndpoints: registeredAPIs.length });
+  res.json({ owner: OWNER, totalEndpoints: registeredAPIs.length });
 });
 
 app.get('/db/stats', (req, res) => {
@@ -279,7 +279,7 @@ app.get('/api-data', (req, res) => {
     example: `${baseUrl}/api/${api.name}?${api.exampleQuery}`,
     upstreamUrl: api.upstreamUrl
   }));
-  res.json({ apis: formattedApis, baseUrl, owner: OWNER, channel: CHANNEL });
+  res.json({ apis: formattedApis, baseUrl, owner: OWNER });
 });
 
 // --- DASHBOARD routes ---
@@ -376,21 +376,22 @@ app.all('/api/:endpoint', async (req, res) => {
     const execTime = Date.now() - startTime;
     if (!response.data) {
       logQuery(endpointName, usedParam, targetValue, 500, {}, "No data returned", req.ip, execTime);
-      return res.status(500).json({ success: false, error: "API returned no data", owner: OWNER, channel: CHANNEL });
+      return res.status(500).json({ success: false, error: "API returned no data", owner: OWNER });
     }
     if (typeof response.data === 'string' && response.data.includes('<!DOCTYPE html>')) {
       logQuery(endpointName, usedParam, targetValue, 500, {}, "HTML error page", req.ip, execTime);
-      return res.status(500).json({ success: false, error: "API returned HTML error page", owner: OWNER, channel: CHANNEL });
+      return res.status(500).json({ success: false, error: "API returned HTML error page", owner: OWNER });
     }
     let cleaned = cleanData(response.data);
     if (!cleaned || (typeof cleaned === 'object' && Object.keys(cleaned).length === 0)) {
       logQuery(endpointName, usedParam, targetValue, 404, cleaned, "Empty response", req.ip, execTime);
-      return res.status(404).json({ success: false, error: "No data found", owner: OWNER, channel: CHANNEL });
+      return res.status(404).json({ success: false, error: "No data found", owner: OWNER });
     }
     if (cleaned && typeof cleaned === 'object' && !Array.isArray(cleaned)) {
-      cleaned.owner = OWNER; cleaned.channel = CHANNEL; cleaned.timestamp = new Date().toISOString();
+      cleaned.owner = OWNER;
+      cleaned.timestamp = new Date().toISOString();
     } else {
-      cleaned = { data: cleaned, owner: OWNER, channel: CHANNEL, timestamp: new Date().toISOString() };
+      cleaned = { data: cleaned, owner: OWNER, timestamp: new Date().toISOString() };
     }
     logQuery(endpointName, usedParam, targetValue, response.status, cleaned, null, req.ip, execTime);
     return res.status(response.status).json(cleaned);
@@ -401,7 +402,7 @@ app.all('/api/:endpoint', async (req, res) => {
     if (error.response) { errorDetails.status = error.response.status; errorMessage = `API returned status ${error.response.status}`; }
     else if (error.request) { errorMessage = "No response from API server (timeout)"; }
     logQuery(req.params.endpoint, null, null, 500, {}, errorMessage, req.ip, execTime);
-    return res.status(500).json({ success: false, error: "Gateway execution error", message: errorMessage, details: errorDetails, owner: OWNER, channel: CHANNEL });
+    return res.status(500).json({ success: false, error: "Gateway execution error", message: errorMessage, details: errorDetails, owner: OWNER });
   }
 });
 
@@ -434,7 +435,7 @@ const PORT = process.env.PORT || 3000;
 if (require.main === module) {
   app.listen(PORT, async () => {
     console.log(`API Gateway running on port ${PORT}`);
-    console.log(`Owner: ${OWNER} | Channel: ${CHANNEL}`);
+    console.log(`Owner: ${OWNER}`);
     console.log(`Endpoints: ${registeredAPIs.length}`);
     await tgSync.onBoot();
     tgSync.startInterval();
