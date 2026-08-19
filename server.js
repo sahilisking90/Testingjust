@@ -29,7 +29,6 @@ app.get('/nav.js', (req, res) => {
 });
 
 const OWNER   = "@sahilxalone";
-const CHANNEL = "@osintnxera";
 
 const removeFields = [
   'owner', 'OWNER', 'channel', 'CHANNEL', 'telegram', 'contact',
@@ -95,11 +94,11 @@ const APIs = [
   { name: "num-pak",  url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",  method:"GET", description:"Pakistan phone number lookup"  },
   { name: "leak",     url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"          },
   { name: "bom",      url: "https://leakapi.dpdns.org/bomb?num={number}",                             method:"GET", description:"💣 SMS/Call bomber"            },
-  { name: "adhar",    url: "https://osint.invalidayushh.workers.dev/adhar?key=Rack&q={adhar}",       method:"GET", description:"Aadhaar identification lookup" },
+  { name: "adhar",    url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&adhar={adhar}",       method:"GET", description:"Aadhaar identification lookup" },
   { name: "family",   url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",    method:"GET", description:"Family tree lookup"            },
   { name: "email",    url: "https://osint.invalidayushh.workers.dev/email?key=Rack&q={email}",        method:"GET", description:"Email breach record lookup"    },
   { name: "veh-info", url: "https://leakapi.dpdns.org/vehicle-info?registration_number={vehicle}",    method:"GET", description:"Vehicle registration details"  },
-  { name: "veh",      url: "https://leakapi.dpdns.org/api/vehicle?vehicle={vehicle}",                 method:"GET", description:"Detailed vehicle intelligence" },
+  { name: "veh",      url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&veh={vehicle}",                 method:"GET", description:"Detailed vehicle intelligence" },
   { name: "rc",       url: "https://leakapi.dpdns.org/rc?registration_number={vehicle}",              method:"GET", description:"RC registration lookup"        },
   { name: "insta",    url: "https://osint.invalidayushh.workers.dev/insta?key=Rack&q={username}",     method:"GET", description:"Instagram account intelligence"},
   { name: "git",      url: "https://ft-osint-api.duckdns.org/api/git?key=sahil-new&username={username}", method:"GET", description:"GitHub profile intelligence"},
