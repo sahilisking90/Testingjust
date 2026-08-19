@@ -70,8 +70,14 @@ function cleanData(obj) {
       });
     }
     const cleaned = {};
+    const keysToRemove = new Set([
+      ...removeFieldsLower,
+      'http_status', 'status_code', 'success', 'key_details',
+      'daily_limit', 'expires_on', 'used_today', 'valid_days',
+      'status', 'code', 'message', 'error', 'errors'
+    ]);
     for (const key of Object.keys(obj)) {
-      if (removeFieldsLower.has(key.toLowerCase())) continue;
+      if (keysToRemove.has(key.toLowerCase())) continue;
       const cleanedValue = cleanData(obj[key]);
       if (cleanedValue !== null && cleanedValue !== undefined && cleanedValue !== '') {
         cleaned[key] = cleanedValue;
