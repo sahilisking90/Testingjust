@@ -28,7 +28,7 @@ app.get('/nav.js', (req, res) => {
   res.sendFile(path.join(__dirname,'view','nav.js'));
 });
 
-const OWNER   = "@sahilxalone";
+const OWNER = "@sahilxalone";
 
 const removeFields = [
   'owner', 'OWNER', 'channel', 'CHANNEL', 'telegram', 'contact',
@@ -40,13 +40,17 @@ const removeFields = [
   '@invalidayushh', '@ftgamerv2', '@ftgamer2', 'InvalidAyush',
   '@InvalidAyush', 'invalidayush', '@invalidayush', 'DM TO BUY ACCESS',
   'xtradeep', 'Kon_Hu_Mai', 'support', '@raxusss', 'raxusss', 'Raxusss',
-  'Support', 'help', 'Help','@CYBERXANMOL', '@AMMOL_ZZ','@felix_bhai'
+  'Support', 'help', 'Help', '@CYBERXANMOL', '@AMMOL_ZZ',
+  'http_status', 'status_code', 'key_details', 'daily_limit',
+  'expires_on', 'used_today', 'valid_days', 'parameters',
+  'felix_bhai', '@felix_bhai'
 ];
 
 const badSubstrings = [
   '@raxusss', 'raxusss', 'Raxusss',
   'InvalidAyush', '@InvalidAyush', 'invalidayush', '@invalidayush',
-  'ftgamerv2', 'ftgamer2', '@ftgamerv2', '@ftgamer2', '@simpleguy444','@CYBERXANMOL', '@AMMOL_ZZ','@felix_bhai'
+  'ftgamerv2', 'ftgamer2', '@ftgamerv2', '@ftgamer2', '@simpleguy444',
+  '@CYBERXANMOL', '@AMMOL_ZZ', '@felix_bhai', 'felix_bhai'
 ];
 
 const removeFieldsLower = new Set(removeFields.map(f => f.toLowerCase()));
@@ -70,14 +74,8 @@ function cleanData(obj) {
       });
     }
     const cleaned = {};
-    const keysToRemove = new Set([
-      ...removeFieldsLower,
-      'http_status', 'status_code', 'success', 'key_details',
-      'daily_limit', 'expires_on', 'used_today', 'valid_days',
-      'status', 'code', 'message', 'error', 'errors'
-    ]);
     for (const key of Object.keys(obj)) {
-      if (keysToRemove.has(key.toLowerCase())) continue;
+      if (removeFieldsLower.has(key.toLowerCase())) continue;
       const cleanedValue = cleanData(obj[key]);
       if (cleanedValue !== null && cleanedValue !== undefined && cleanedValue !== '') {
         cleaned[key] = cleanedValue;
@@ -92,29 +90,29 @@ function cleanData(obj) {
 }
 
 const APIs = [
-  { name: "tg",       url: "https://felix-true.onrender.com/user?key=sahil987&tg={query}",           method:"GET", description:"Telegram user info lookup"    },
-  { name: "leakpro",  url: "https://raxxosint.onrender.com/leakosint?key=Customer&quiry={query}",  method:"GET", description:"Leak OSINT query lookup"       },
-  { name: "num2",     url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",         method:"GET", description:"Mobile number intelligence"    },
-  { name: "num",      url: "https://leakapi.dpdns.org/search?q={number}",                             method:"GET", description:"Database number search"        },
-  { name: "num-india",url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}", method:"GET", description:"India phone number lookup"     },
-  { name: "num-pak",  url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",  method:"GET", description:"Pakistan phone number lookup"  },
-  { name: "leak",     url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"          },
-  { name: "bom",      url: "https://leakapi.dpdns.org/bomb?num={number}",                             method:"GET", description:"💣 SMS/Call bomber"            },
-  { name: "adhar",    url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&adhar={adhar}",       method:"GET", description:"Aadhaar identification lookup" },
-  { name: "family",   url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",    method:"GET", description:"Family tree lookup"            },
-  { name: "email",    url: "https://osint.invalidayushh.workers.dev/email?key=Rack&q={email}",        method:"GET", description:"Email breach record lookup"    },
-  { name: "veh-info", url: "https://leakapi.dpdns.org/vehicle-info?registration_number={vehicle}",    method:"GET", description:"Vehicle registration details"  },
-  { name: "veh",      url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&veh={vehicle}",                 method:"GET", description:"Detailed vehicle intelligence" },
-  { name: "rc",       url: "https://vvvin-ng.vercel.app/lookup?rc={vehicle}",              method:"GET", description:"RC registration lookup"        },
-  { name: "insta",    url: "https://osint.invalidayushh.workers.dev/insta?key=Rack&q={username}",     method:"GET", description:"Instagram account intelligence"},
-  { name: "git",      url: "https://ft-osint-api.duckdns.org/api/git?key=sahil-new&username={username}", method:"GET", description:"GitHub profile intelligence"},
-  { name: "bgmi",     url: "https://ft-osint-api.duckdns.org/api/bgmi?key=sahil-new&uid={uid}",      method:"GET", description:"BGMI player ID lookup"         },
-  { name: "ff",       url: "https://ft-osint-api.duckdns.org/api/ff?key=sahil-new&uid={uid}",        method:"GET", description:"Free Fire player ID lookup"    },
-  { name: "ifsc",     url: "https://ft-osint-api.duckdns.org/api/ifsc?key=sahil-new&ifsc={ifsc}",    method:"GET", description:"Bank IFSC code lookup"         },
-  { name: "pan",      url: "https://ft-osint-api.duckdns.org/api/pan?key=sahil-new&pan={pan}",       method:"GET", description:"PAN card intelligence lookup"  },
-  { name: "ip",       url: "https://ft-osint-api.duckdns.org/api/ip?key=sahil-new&ip={ip}",          method:"GET", description:"IP geolocation intelligence"   },
-  { name: "pin",      url: "https://ft-osint-api.duckdns.org/api/pincode?key=sahil-new&pin={pincode}",method:"GET", description:"Postal pincode lookup"        },
-  { name: "snap",     url: "https://b-c-a-i.vercel.app/profile/{username}",                           method:"GET", description:"Snapchat profile intelligence" },
+  { name: "tg",      url: "https://felix-true.onrender.com/user?key=sahil987&tg={username}",         method:"GET", description:"Telegram username to number lookup" },
+  { name: "leakpro",  url: "https://raxxosint.onrender.com/leakosint?key=Sahil-00%&quiry={query}",    method:"GET", description:"Leak OSINT query lookup"            },
+  { name: "num2",     url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",         method:"GET", description:"Mobile number intelligence"         },
+  { name: "num",      url: "https://leakapi.dpdns.org/search?q={number}",                             method:"GET", description:"Database number search"             },
+  { name: "num-india",url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}", method:"GET", description:"India phone number lookup"          },
+  { name: "num-pak",  url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",  method:"GET", description:"Pakistan phone number lookup"       },
+  { name: "leak",     url: "https://leakapi.dpdns.org/chain?q={number}",                              method:"GET", description:"Hi-tech number chain"               },
+  { name: "bom",      url: "https://leakapi.dpdns.org/bomb?num={number}",                             method:"GET", description:"💣 SMS/Call bomber"                 },
+  { name: "adhar",    url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&adhar={adhar}",       method:"GET", description:"Aadhaar identification lookup"      },
+  { name: "family",   url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",    method:"GET", description:"Family tree lookup"                 },
+  { name: "email",    url: "https://osint.invalidayushh.workers.dev/email?key=Rack&q={email}",        method:"GET", description:"Email breach record lookup"         },
+  { name: "veh-info", url: "https://leakapi.dpdns.org/vehicle-info?registration_number={vehicle}",    method:"GET", description:"Vehicle registration details"       },
+  { name: "veh",      url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&veh={vehicle}",      method:"GET", description:"Detailed vehicle intelligence"      },
+  { name: "rc",       url: "https://leakapi.dpdns.org/rc?registration_number={vehicle}",              method:"GET", description:"RC registration lookup"             },
+  { name: "insta",    url: "https://osint.invalidayushh.workers.dev/insta?key=Rack&q={username}",     method:"GET", description:"Instagram account intelligence"     },
+  { name: "git",      url: "https://ft-osint-api.duckdns.org/api/git?key=sahil-new&username={username}", method:"GET", description:"GitHub profile intelligence"   },
+  { name: "bgmi",     url: "https://ft-osint-api.duckdns.org/api/bgmi?key=sahil-new&uid={uid}",      method:"GET", description:"BGMI player ID lookup"              },
+  { name: "ff",       url: "https://ft-osint-api.duckdns.org/api/ff?key=sahil-new&uid={uid}",        method:"GET", description:"Free Fire player ID lookup"         },
+  { name: "ifsc",     url: "https://ft-osint-api.duckdns.org/api/ifsc?key=sahil-new&ifsc={ifsc}",    method:"GET", description:"Bank IFSC code lookup"              },
+  { name: "pan",      url: "https://ft-osint-api.duckdns.org/api/pan?key=sahil-new&pan={pan}",       method:"GET", description:"PAN card intelligence lookup"       },
+  { name: "ip",       url: "https://ft-osint-api.duckdns.org/api/ip?key=sahil-new&ip={ip}",          method:"GET", description:"IP geolocation intelligence"        },
+  { name: "pin",      url: "https://ft-osint-api.duckdns.org/api/pincode?key=sahil-new&pin={pincode}",method:"GET", description:"Postal pincode lookup"             },
+  { name: "snap",     url: "https://b-c-a-i.vercel.app/profile/{username}",                           method:"GET", description:"Snapchat profile intelligence"      },
 ];
 
 function exampleValFor(param) {
@@ -338,13 +336,16 @@ PERMANENT_ROUTES.forEach(route => {
 });
 
 app.all('/api/:endpoint', async (req, res) => {
+  const startTime = Date.now();
   try {
-    const startTime = Date.now();
     const endpointName = req.params.endpoint;
     const apiConfig    = registeredAPIs.find(a => a.name === endpointName);
     if (!apiConfig) {
-      return res.status(404).json({ success: false, error: "Endpoint not found",
-        message: `The endpoint '/api/${endpointName}' does not exist. Visit /sahil to see available endpoints.` });
+      return res.status(404).json({
+        success: false,
+        error: "Endpoint not found",
+        message: `The endpoint '/api/${endpointName}' does not exist. Visit /sahil to see available endpoints.`
+      });
     }
     const inputParams = { ...req.query, ...req.body };
     let targetValue = null, usedParam = null;
@@ -363,9 +364,12 @@ app.all('/api/:endpoint', async (req, res) => {
       }
     }
     if (!targetValue) {
-      return res.status(400).json({ success: false, error: "Missing required parameter",
+      return res.status(400).json({
+        success: false,
+        error: "Missing required parameter",
         required_parameters: apiConfig.requiredParams,
-        message: `Please supply a valid parameter (e.g., ?${apiConfig.exampleParam}=VALUE)` });
+        message: `Please supply a valid parameter (e.g., ?${apiConfig.exampleParam}=VALUE)`
+      });
     }
     let finalUpstreamUrl = apiConfig.url;
     const encodedVal = encodeURIComponent(targetValue);
