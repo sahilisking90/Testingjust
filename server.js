@@ -105,7 +105,7 @@ const APIs = [
   { name: "email",    url: "https://osint.invalidayushh.workers.dev/email?key=Rack&q={email}",        method:"GET", description:"Email breach record lookup"    },
   { name: "veh-info", url: "https://leakapi.dpdns.org/vehicle-info?registration_number={vehicle}",    method:"GET", description:"Vehicle registration details"  },
   { name: "veh",      url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&veh={vehicle}",                 method:"GET", description:"Detailed vehicle intelligence" },
-  { name: "rc",       url: "https://leakapi.dpdns.org/rc?registration_number={vehicle}",              method:"GET", description:"RC registration lookup"        },
+  { name: "rc",       url: "https://vvvin-ng.vercel.app/lookup?rc={vehicle}",              method:"GET", description:"RC registration lookup"        },
   { name: "insta",    url: "https://osint.invalidayushh.workers.dev/insta?key=Rack&q={username}",     method:"GET", description:"Instagram account intelligence"},
   { name: "git",      url: "https://ft-osint-api.duckdns.org/api/git?key=sahil-new&username={username}", method:"GET", description:"GitHub profile intelligence"},
   { name: "bgmi",     url: "https://ft-osint-api.duckdns.org/api/bgmi?key=sahil-new&uid={uid}",      method:"GET", description:"BGMI player ID lookup"         },
