@@ -101,7 +101,7 @@ const APIs = [
   { name: "adhar",    url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&adhar={adhar}",       method:"GET", description:"Aadhaar identification lookup"      },
   { name: "family",   url: "https://ayaanmods.site/family.php?key=YOUR_SUBHXCO_KEY&term={adhar}",    method:"GET", description:"Family tree lookup"                 },
   { name: "email",    url: "https://osint.invalidayushh.workers.dev/email?key=Rack&q={email}",        method:"GET", description:"Email breach record lookup"         },
-  { name: "veh-info", url: "https://leakapi.dpdns.org/vehicle-info?registration_number={vehicle}",    method:"GET", description:"Vehicle registration details"       },
+  { name: "veh-info", url: "https://apex.renewbuyinsurance.com/cv/api/v1/vaahan/registration_number/?regn_no={vehicle}",    method:"GET", description:"Vehicle registration details"       },
   { name: "veh",      url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&veh={vehicle}",      method:"GET", description:"Detailed vehicle intelligence"      },
   { name: "rc",       url: "https://vvvin-ng.vercel.app/lookup?rc={vehicle}",              method:"GET", description:"RC registration lookup"             },
   { name: "insta",    url: "https://osint.invalidayushh.workers.dev/insta?key=Rack&q={username}",     method:"GET", description:"Instagram account intelligence"     },
