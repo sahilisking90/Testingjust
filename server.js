@@ -43,7 +43,7 @@ const removeFields = [
   'Support', 'help', 'Help', '@CYBERXANMOL', '@AMMOL_ZZ',
   'http_status', 'status_code', 'key_details', 'daily_limit',
   'expires_on', 'used_today', 'valid_days', 'parameters',
-  'felix_bhai', '@felix_bhai'
+  'felix_bhai', '@felix_bhai','@Cyb3rB4nn3r'
 ];
 
 const badSubstrings = [
@@ -90,8 +90,8 @@ function cleanData(obj) {
 }
 
 const APIs = [
-  { name: "tg",      url: "https://felix-true.onrender.com/user?key=sahil987&tg={username}",         method:"GET", description:"Telegram username to number lookup" },
-  { name: "leakpro",  url: "https://raxxosint.onrender.com/leakosint?key=Customer&quiry={query}",    method:"GET", description:"Leak OSINT query lookup"            },
+  { name: "tg",      url: "https://felix-true.onrender.com/user?key=felixbhai&tg={username}",         method:"GET", description:"Telegram username to number lookup" },
+  { name: "leakpro",  url: "https://l34k-osint.onrender.com/search?key=c53ba1cd6eb1518d95c4f648055beac6&query={query}",    method:"GET", description:"Leak OSINT query lookup"            },
   { name: "num2",     url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",         method:"GET", description:"Mobile number intelligence"         },
   { name: "num",      url: "https://leakapi.dpdns.org/search?q={number}",                             method:"GET", description:"Database number search"             },
   { name: "num-india",url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}", method:"GET", description:"India phone number lookup"          },
