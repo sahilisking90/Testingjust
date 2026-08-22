@@ -92,7 +92,7 @@ function cleanData(obj) {
 const APIs = [
   { name: "tg",      url: "https://felix-true.onrender.com/user?key=felixbhai&tg={username}",         method:"GET", description:"Telegram username to number lookup" },
   { name: "leakpro",  url: "https://l34k-osint.onrender.com/search?key=c53ba1cd6eb1518d95c4f648055beac6&query={query}",    method:"GET", description:"Leak OSINT query lookup"            },
-  { name: "num2",     url: "https://osint.invalidayushh.workers.dev/num?key=Rack&q={number}",         method:"GET", description:"Mobile number intelligence"         },
+  { name: "num2",     url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&num={number}",         method:"GET", description:"Mobile number intelligence"         },
   { name: "num",      url: "https://leakapi.dpdns.org/search?q={number}",                             method:"GET", description:"Database number search"             },
   { name: "num-india",url: "https://ft-osint-api.duckdns.org/api/number?key=sahil-new&num={number}", method:"GET", description:"India phone number lookup"          },
   { name: "num-pak",  url: "https://ft-osint-api.duckdns.org/api/pk?key=sahil-new&number={number}",  method:"GET", description:"Pakistan phone number lookup"       },
@@ -104,7 +104,7 @@ const APIs = [
   { name: "veh-info", url: "https://apex.renewbuyinsurance.com/cv/api/v1/vaahan/registration_number/?regn_no={vehicle}",    method:"GET", description:"Vehicle registration details"       },
   { name: "veh",      url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&veh={vehicle}",      method:"GET", description:"Detailed vehicle intelligence"      },
   { name: "rc",       url: "https://vvvin-ng.vercel.app/lookup?rc={vehicle}",              method:"GET", description:"RC registration lookup"             },
-  { name: "insta",    url: "https://osint.invalidayushh.workers.dev/insta?key=Rack&q={username}",     method:"GET", description:"Instagram account intelligence"     },
+  { name: "insta",    url: "https://scrape-9vmt.onrender.com/multiapi?key=SAHIL&insta={username}",     method:"GET", description:"Instagram account intelligence"     },
   { name: "git",      url: "https://ft-osint-api.duckdns.org/api/git?key=sahil-new&username={username}", method:"GET", description:"GitHub profile intelligence"   },
   { name: "bgmi",     url: "https://ft-osint-api.duckdns.org/api/bgmi?key=sahil-new&uid={uid}",      method:"GET", description:"BGMI player ID lookup"              },
   { name: "ff",       url: "https://ft-osint-api.duckdns.org/api/ff?key=sahil-new&uid={uid}",        method:"GET", description:"Free Fire player ID lookup"         },
